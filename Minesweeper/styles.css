@@ -1,0 +1,98 @@
+.cell {
+    border: 1px solid #888;
+    width: 20px;
+    height: 20px;
+    margin: 0;
+}
+
+.cell:hover {
+    background-color: #ddd;
+    cursor: pointer;
+}
+
+#grid_container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+}
+
+#grid {
+    display: grid;
+    grid-gap: 0;
+    background-color: #bbb;
+    border: 2px solid #888;
+    margin-top: 20px;
+}
+
+#grid.prep {
+    display: none;
+}
+
+.row {
+    display: flex;
+    flex-direction: row;
+}
+
+#win_or_lose {
+    margin-top: 20px;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+body.explode {
+    animation: explode 1s forwards;
+    color: white;
+}
+
+@keyframes explode {
+    0% { background-color: red; }
+    20% { background-color: yellow; }
+    40% { background-color: red; }
+    60% { background-color: yellow; }
+    80% { background-color: red; }
+    100% { background-color: black; }
+}
+
+/* The container that will overlay the grid exactly */
+#explosion-container {
+    position: absolute;
+    pointer-events: none; /* Let clicks pass through */
+    overflow: visible;
+    z-index: 999; /* On top of everything */
+}
+
+.confetti {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 10px;
+    height: 10px;
+    background-color: var(--color);
+    border-radius: 2px;
+    opacity: 0;
+}
+
+.confetti.animate {
+    animation: boom 1s ease-out forwards;
+}
+
+@keyframes boom {
+    0% {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+    }
+    100% {
+        opacity: 0;
+        /* Move to dynamic destination set by JS */
+        transform: translate(var(--tx), var(--ty)) rotate(var(--r)) scale(0.5);
+    }
+}
+
+h1 {
+    text-align: center;
+}
