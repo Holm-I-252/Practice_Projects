@@ -1,0 +1,65 @@
+/* 1. The Container */
+.hand-container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  height: 350px; 
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+  
+  /* GLOBAL SETTING: Update this if card count changes */
+  --total: 26; 
+}
+
+/* 2. The Card Logic */
+.card {
+  position: absolute;
+  width: 120px;  /* Slightly smaller width for 26 cards */
+  height: 190px;
+  background: white;
+  border: 1px solid #999;
+  border-radius: 8px;
+  box-shadow: -2px 2px 5px rgba(0,0,0,0.2);
+  transform-origin: bottom center;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  bottom: 20px;
+
+  /* --- FANNING MATH --- */
+  --angle-dist: 3deg;   /* Rotation difference between cards */
+  --x-dist: 15px;       /* Horizontal distance between cards */
+  --y-dist: 30px;       /* Vertical arch height */
+
+  /* Determine how far this card is from the center.
+     Example: If total is 26, the center is 12.5.
+     Card 0 is -12.5 spots away. Card 25 is +12.5 spots away.
+  */
+  --center-offset: calc(var(--i) - (var(--total) - 1) / 2);
+
+  /* Calculate rotation and position based on offset */
+  --rot: calc(var(--center-offset) * var(--angle-dist));
+  --tx: calc(var(--center-offset) * var(--x-dist));
+  
+  /* Creates the arch (middle cards pop up) */
+  --ty: calc(var(--y-dist) * -1 * (1 - abs(var(--center-offset) / (var(--total) / 2))));
+
+  transform: 
+    translateX(var(--tx)) 
+    translateY(var(--ty)) 
+    rotate(var(--rot));
+
+    left: 50%;
+  margin-left: -60px;
+}
+
+/* 3. Hover Effects */
+.card:hover {
+  /* Lift the card up and scale it slightly */
+  transform: 
+    translateX(var(--tx)) 
+    translateY(-60px) /* Move up */
+    rotate(var(--rot)) 
+    scale(1.1);
+  z-index: 100; /* Ensure it floats above neighbors */
+  box-shadow: 0 10px 20px rgba(0,0,0,0.4);
+}

@@ -96,3 +96,10 @@ body.explode {
 h1 {
     text-align: center;
 }
+
+@media (max-width: 600px) {
+    .cell {
+        width: 10px;
+        height: 10px;
+    }
+}   

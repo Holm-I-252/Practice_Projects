@@ -112,8 +112,6 @@ function createGrid(rows, cols) {
             const cell = document.createElement("div");
             cell.classList.add("cell");
             // Basic cell styling for visibility if not in CSS
-            cell.style.width = "40px";
-            cell.style.height = "40px";
             cell.style.backgroundColor = "#ccc";
             cell.style.display = "flex";
             cell.style.alignItems = "center";

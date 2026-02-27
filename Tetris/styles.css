@@ -1,0 +1,20 @@
+.cell {
+    background-color: white;
+    width: 40px;
+    height: 40px;
+    border: 1px solid rgb(75, 73, 73);
+}
+
+#tetris_grid {
+    border: 2px solid black;
+    display: grid;
+    width: 402px;
+    height: 802px;
+    grid-template-columns: repeat(10, 40px);
+    grid-template-rows: repeat(20, 40px);
+}
+
+canvas {
+    border: 2px solid black;
+    background-color: #f0f0f0;
+}
